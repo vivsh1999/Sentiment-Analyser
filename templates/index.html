@@ -13,7 +13,24 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
     
+    </script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#process_input').bind('click', function() {
+				$.getJSON('/background_process', {
+				  review: $('textarea[name="review"]').val(),
+				}, function(data) {
+                    // if(data.toggle = 1)
+                    // $("#div1").addClass("important blue");
+				    $("#result-field").text(data.result);
+				});
+				return false;
+			  });
+			});
+            
+		</script>
 </head>
 
 <body>
@@ -32,22 +49,23 @@
         </section>
         <section>
             <div class="container mainform" >
-                <form action="/" style="padding-top:30vh;" id="main" role="form">
+                <form  style="padding-top:30vh;" id="main" role="form">
                     <div class="form-group input-group-lg">
                         <label for="testtext" class="display-4 text-center" style="width: 100%">Insert Your Text Here:</label>
-                        <textarea class="form-control" id="testtext" rows="5" placeholder="Enter Something..."></textarea>
+                        <textarea class="form-control" id="testtext" rows="5" placeholder="Enter Something..." name="review" required></textarea>
                     </div>
 
                     <p style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;">
-                        <button type="submit" class="btn btn-success btn-lg" style="align-content: center;">Submit</button>
+                        <a href="#" id=process_input><button type="submit" class="btn btn-success btn-lg" style="align-content: center;">Submit</button></a>
                     </p>
                 </form>
-                {% if prediction == 1%}
+                <p id="result-field" style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;color: #0f0;"></p>
+                <!-- {% if prediction == 1%}
                 <p class="positive" style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;color: #0f0;">{{output}}</p>
                 {% elif prediction == 0%}
                 <p class="negative" style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;color: orangered;">{{output}}</p>
                 {% else %}
-                {% endif %}
+                {% endif %} -->
             </div>
         </section>
     
@@ -61,9 +79,9 @@
         </footer>
     </div>
     <!-- scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
