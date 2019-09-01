@@ -11,7 +11,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
     
 </head>
@@ -32,7 +32,7 @@
         </section>
         <section>
             <div class="container mainform" >
-                <form action="" style="padding-top:30vh;" id="main">
+                <form action="/" style="padding-top:30vh;" id="main" role="form">
                     <div class="form-group input-group-lg">
                         <label for="testtext" class="display-4 text-center" style="width: 100%">Insert Your Text Here:</label>
                         <textarea class="form-control" id="testtext" rows="5" placeholder="Enter Something..."></textarea>
@@ -42,6 +42,12 @@
                         <button type="submit" class="btn btn-success btn-lg" style="align-content: center;">Submit</button>
                     </p>
                 </form>
+                {% if prediction == 1%}
+                <p class="positive" style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;color: #0f0;">{{output}}</p>
+                {% elif prediction == 0%}
+                <p class="negative" style="display:block; line-height: 70px; width:100%; text-align:center; margin:0 auto;color: orangered;">{{output}}</p>
+                {% else %}
+                {% endif %}
             </div>
         </section>
     
