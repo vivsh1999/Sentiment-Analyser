@@ -9,6 +9,12 @@ html {
     scroll-behavior: smooth;
 }
 
+.positive{
+    color: rgb(9, 99, 9);
+}
+.negative{
+    color: rgb(221, 71, 17);
+}
 
  /* .vertical-center {
     min-height: 100%;  
